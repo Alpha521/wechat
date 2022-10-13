@@ -17,7 +17,7 @@ app_id = "wxa6908ef5cf77e676"
 app_secret = "df5408b2d176032e45e98b73934883af"
 
 user_id = ["okCU26Gxs7OSjbr9N12KwLmf2heg", "okCU26CyZAlox-Mrm9fQsmPhRa5I"]
-template_id = "b8OrpnYd3Zqtmnulp7Y0bKMunLf2_EFPwm_sjfU3x2c"
+template_id = "dNLE16HwtQjXwweVVs0W-mLHsLvZ_kSJ3nJJlbph8Eo"
 
 weather_key = "08eb4100a73f4d2ab967c0bd5baed51e"
 
