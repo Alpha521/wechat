@@ -10,13 +10,14 @@ import random
 today = datetime.now()
 start_date = '2019-08-14'
 city0 = 'wuhan'
-birthday = '10-13'
+birthday1 = '10-13'
+birthday2 = '11-18'
 
 app_id = "wxa6908ef5cf77e676"
 app_secret = "df5408b2d176032e45e98b73934883af"
 
 user_id = ["okCU26Gxs7OSjbr9N12KwLmf2heg", "okCU26CyZAlox-Mrm9fQsmPhRa5I"]
-template_id = "5EW0R-ZxTm1XlJg-1Irrvb9zCAEo3sxYYtcuaOpYgWA"
+template_id = "b8OrpnYd3Zqtmnulp7Y0bKMunLf2_EFPwm_sjfU3x2c"
 
 weather_key = "08eb4100a73f4d2ab967c0bd5baed51e"
 
@@ -55,10 +56,13 @@ def get_count():
   return delta.days
 
 def get_birthday():
-  next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
-  if next < datetime.now():
-    next = next.replace(year=next.year + 1)
-  return (next - today).days
+  next1 = datetime.strptime(str(date.today().year) + "-" + birthday1, "%Y-%m-%d")
+  next2 = datetime.strptime(str(date.today().year) + "-" + birthday2, "%Y-%m-%d")
+  if next1 < datetime.now():
+    next1 = next1.replace(year=next1.year + 1) 
+  if next2 < datetime.now():
+    next2 = next2.replace(year=next2.year + 1)
+  return (next1 - today).days, (next2 - today).days
 
 def get_weekday():
     day = today.weekday()
@@ -109,7 +113,8 @@ data = {"region":{"value":region, "color":get_random_color()},
         "moonset":{"value":moonset, "color":get_random_color()},
         "air_qual":{"value":air_qual, "color":get_random_color()},
         "love_days":{"value":get_count(), "color":get_random_color()},
-        "birthday_left":{"value":get_birthday(), "color":get_random_color()},
+        "birthday1_left":{"value":get_birthday()[0], "color":get_random_color()},
+        "birthday2_left":{"value":get_birthday()[1], "color":get_random_color()},
         "words":{"value":get_words(), "color":get_random_color()}}
 for wechat_id in user_id:
     res = wm.send_template(wechat_id, template_id, data)
