@@ -9,6 +9,7 @@ import random
 
 today = datetime.now()
 start_date = '2019-08-14'
+ending_date = '2023-07-02'
 city0 = 'wuhan'
 birthday1 = '10-13'
 birthday2 = '11-18'
@@ -17,7 +18,7 @@ app_id = "wxa6908ef5cf77e676"
 app_secret = "df5408b2d176032e45e98b73934883af"
 
 user_id = ["okCU26Gxs7OSjbr9N12KwLmf2heg", "okCU26CyZAlox-Mrm9fQsmPhRa5I"]
-template_id = "dNLE16HwtQjXwweVVs0W-mLHsLvZ_kSJ3nJJlbph8Eo"
+template_id = "vbcMSv7sxlr2GrEuI9rQe-AHzlySGP6FoS7NaKho4F8"
 
 weather_key = "08eb4100a73f4d2ab967c0bd5baed51e"
 
@@ -53,7 +54,8 @@ def get_weather():
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
-  return delta.days
+  ends = datetime.strptime(ending_date, "%Y-%m-%d") - today
+  return delta.days, ends.days
 
 def get_birthday():
   next1 = datetime.strptime(str(date.today().year) + "-" + birthday1, "%Y-%m-%d")
@@ -96,6 +98,7 @@ client = WeChatClient(app_id, app_secret)
 region,city,prov,data,text_now,temp_now,temp_min, \
     temp_max,day_wea,night_wea,sunrise,sunset,moonrise,moonset,air_qual = get_weather()
 wm = WeChatMessage(client)
+days_start, days_ends = get_count()
 data = {"region":{"value":region, "color":get_random_color()},
         "city":{"value":city, "color":get_random_color()},
         "prov":{"value":prov, "color":get_random_color()},
@@ -112,11 +115,11 @@ data = {"region":{"value":region, "color":get_random_color()},
         "moonrise":{"value":moonrise, "color":get_random_color()},
         "moonset":{"value":moonset, "color":get_random_color()},
         "air_qual":{"value":air_qual, "color":get_random_color()},
-        "love_days":{"value":get_count(), "color":get_random_color()},
+        "love_days":{"value":days_start, "color":get_random_color()},
+        "ends_days":{"value":days_ends, "color":get_random_color()},
         "birthday1_left":{"value":get_birthday()[0], "color":get_random_color()},
         "birthday2_left":{"value":get_birthday()[1], "color":get_random_color()},
         "words":{"value":get_words(), "color":get_random_color()}}
 for wechat_id in user_id:
     res = wm.send_template(wechat_id, template_id, data)
     print(res)
-
