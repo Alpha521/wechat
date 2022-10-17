@@ -9,7 +9,7 @@ import random
 
 today = datetime.now()
 start_date = '2019-08-14'
-ending_date = '2023-07-02'
+ending_date = '2023-07-01'
 city0 = 'wuhan'
 birthday1 = '10-13'
 birthday2 = '11-18'
@@ -123,3 +123,4 @@ data = {"region":{"value":region, "color":get_random_color()},
 for wechat_id in user_id:
     res = wm.send_template(wechat_id, template_id, data)
     print(res)
+#print(days_ends)
