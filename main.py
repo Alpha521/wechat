@@ -8,7 +8,8 @@ import os
 import random
 
 today = datetime.now()
-start_date = '2019-08-14'
+#start_date = '2019-08-14'
+start_date = '2022-10-31'
 ending_date = '2023-07-01'
 city0 = 'wuhan'
 birthday1 = '10-13'
