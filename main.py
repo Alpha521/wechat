@@ -102,7 +102,7 @@ region,city,prov,data,text_now,temp_now,temp_min, \
     temp_max,day_wea,night_wea,sunrise,sunset,moonrise,moonset,air_qual = get_weather()
 wm = WeChatMessage(client)
 days_start, days_ends = get_count()
-data = {"region":{"value":region, "color":get_random_color()},
+data = {"region":{"value":'江夏', "color":get_random_color()},
         "city":{"value":city, "color":get_random_color()},
         "prov":{"value":prov, "color":get_random_color()},
         "date":{"value":data, "color":get_random_color()},
