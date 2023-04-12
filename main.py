@@ -26,7 +26,7 @@ weather_key = "08eb4100a73f4d2ab967c0bd5baed51e"
 
 def get_weather():
   url_location = "https://geoapi.qweather.com/v2/city/lookup?location="+city0+"&key="+weather_key
-  location_req = requests.get(url_location).json()["location"][10]
+  location_req = requests.get(url_location).json()["location"][8]
   location_id = str(location_req["id"])
   region = location_req["name"]
   city = location_req["adm2"]
