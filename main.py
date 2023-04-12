@@ -26,11 +26,12 @@ weather_key = "08eb4100a73f4d2ab967c0bd5baed51e"
 
 def get_weather():
   url_location = "https://geoapi.qweather.com/v2/city/lookup?location="+city0+"&key="+weather_key
-  location_req = requests.get(url_location).json()["location"][9]
-  location_id = str(location_req["id"])
-  region = location_req["name"]
-  city = location_req["adm2"]
-  prov = location_req["adm1"]
+  location_req = requests.get(url_location).json()["location"]
+  location = location_req[9]
+  location_id = str(location["id"])
+  region = location["name"]
+  city = location["adm2"]
+  prov = location["adm1"]
   url_weather_now = "https://devapi.qweather.com/v7/weather/now?location="+location_id+"&key="+weather_key
   url_weather_daily = "https://devapi.qweather.com/v7/weather/3d?location="+location_id+"&key="+weather_key
   url_air_daily = "https://devapi.qweather.com/v7/air/5d?location="+location_id+"&key="+weather_key
@@ -49,6 +50,7 @@ def get_weather():
   moonrise = daily_req["moonrise"]
   moonset = daily_req["moonset"]
   air_qual = air_req["category"]
+ # print(location)
   return region, city, prov, date, text_now, temp_now, temp_min, \
           temp_max, day_wea, night_wea, sunrise, sunset, moonrise, \
           moonset, air_qual
