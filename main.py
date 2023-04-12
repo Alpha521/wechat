@@ -125,3 +125,4 @@ for wechat_id in user_id:
     res = wm.send_template(wechat_id, template_id, data)
     print(res)
 #print(days_ends)
+#print(region)
